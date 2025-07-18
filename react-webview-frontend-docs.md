@@ -1,5 +1,65 @@
 The MemoTrack application's frontend is a **React single-page application (SPA)** designed as a Software-as-a-Service (SaaS) solution for hospitals [Documentation - React App too]. The React app is built using **Create React App**.
 
+### Getting Started and Development
+
+The React app is bootstrapped with Create React App, providing standard scripts for development and deployment.
+
+*   **`npm start`**: Runs the application in development mode, typically accessible at `http://localhost:3000`. The page automatically reloads upon code changes.
+*   **`npm run build`**: Compiles the application for production, generating a minified and optimised build in the `build` folder. This output is ready for deployment.
+
+### Core Architecture and Technologies
+
+The React frontend follows a "hospital-first" architecture and leverages modern web technologies for a responsive and secure experience.
+
+*   **Hospital-First Architecture**:
+    *   The application initiates with **hospital selection**.
+    *   Information about the **selected hospital** is stored in `localStorage` and is crucial for subsequent login attempts and all API requests.
+*   **Authentication and User Management**:
+    *   Authentication is **JWT-based**, interacting with the Django REST Framework backend.
+    *   Upon successful login, the `authToken`, user roles, and profile data are **stored in `localStorage`** for persistence.
+    *   An Axios interceptor is configured to automatically **attach the authentication token** to all outgoing API requests.
+    *   The `AuthContext` and `useAuth` custom hook manage the user, hospital, and token states, facilitating global access to authentication status and user roles (e.g., `isSuperuser`, `isApprover`, `isResponder`, `isCreator`, `isRaiser`).
+*   **Role-Based Routing**:
+    *   After authentication, the application routes users based on their assigned roles, using flags such as `is_super_user`, `is_approver`, `is_responder`, and `is_raiser`.
+    *   The current implementation prioritises the **`superuser` dashboard**, with other role-specific pages serving as placeholders for future expansion.
+*   **Styling and UI Components**:
+    *   The application uses **Tailwind CSS** for utility-first styling and ensures **responsiveness** across desktop, tablet, and mobile screens.
+    *   UI components are built using **Mantine**, including packages like `@mantine/core`, `@mantine/hooks`, and `@mantine/notifications`.
+    *   Icons are provided by **Lucide React**.
+*   **Page Structure and Routing**:
+    *   Key pages include:
+        *   **Login Page (`LoginPage.jsx`)**: Handles user authentication and allows users to set new passwords.
+        *   **Dashboard Content (`DashboardContent.jsx`)**: Provides administrative interfaces for managing users, roles, blocks, approver hierarchies, and shifts.
+        *   **Memos Page (`MemosPage.jsx`)**: Displays a list of memos.
+        *   **Memo Detail Page (`MemoDetail.jsx`)**: Shows detailed information about a specific memo.
+        *   **Ward Manager (`WardManager.jsx`)**: Manages wards associated with a particular block.
+    *   Client-side routing is configured via the `.htaccess` file to redirect specific paths (e.g., `/users`, `/roles`, `/blocks`, `/shifts`, `/hierarchies`, `/memos`, `/memo/:memoId`, `/wards/:blockId`) to `index.html`.
+*   **Code Structure**:
+    *   The recommended project structure for the frontend includes `src/api/` for Axios client and API calls, `src/auth/` for login/logout logic, `src/context/` for Auth and hospital context, `src/pages/` for page components, `src/routes/` for role-based routing, and `src/utils/` for helper functions.
+    *   The current file structure organises components, contexts, hooks, services, and utilities within the `src/` directory.
+*   **API Client**:
+    *   An `ApiService` class centralises all backend API interactions.
+    *   It supports standard HTTP methods (GET, POST, PATCH, DELETE) and manages the `Authorization` header with the authentication token.
+    *   The `baseURL` for API requests is configured via environment variables (`process.env.BACKEND_URL`) or defaults to `https://app.memotrack.net/`.
+*   **State Management and Hooks**:
+    *   Beyond `AuthContext`, the application uses various custom React Hooks:
+        *   **`useCrud`**: Simplifies Create, Read, Update, and Delete operations for different entities by abstracting API calls.
+        *   **`useForm`**: Manages form state, handles changes, blur events, and validates input fields based on defined schemas.
+        *   **`useFlutter`**: Provides context for communication with the Flutter environment when the React app is embedded within a WebView.
+
+### Integration with Flutter
+
+The React frontend is designed to be seamlessly embedded and interact with a Flutter mobile application via a WebView.
+
+*   **Data Injection**: When loaded in Flutter, the React app receives a `source=flutter` query parameter. The Flutter app injects user and authentication data (user details, hospital info, `authToken`, and `flutter_version`) into the React app's `localStorage` via a `memo_user_ready` event.
+*   **Communication Channels**: A `ReactToFlutter` JavaScript channel enables the React app to send messages back to the Flutter host, supporting actions like `updateUser`, `showMessage`, and `uploadImage` (for memos).
+
+### Important Considerations for Developers
+
+*   **`localStorage` Check**: Always verify the presence of existing hospital and user data in `localStorage` before determining navigation routes.
+*   **Development Focus**: Initial development efforts should concentrate on implementing **hospital selection**, the **login process**, and the **superuser dashboard**. Other role-specific features can be added later as "Coming Soon" functionalities.
+
+
 Here is a comprehensive documentation of the files and directories within the `frontend/app/src/` directory of the React application:
 
 ### `src/` Directory Structure Overview
