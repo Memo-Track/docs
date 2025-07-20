@@ -3,6 +3,7 @@ theme: just-the-docs
 baseurl: ""
 
 just_the_docs:
+  permalink: pretty
   heading_levels: 2..4
   collections:
     usermanual:
