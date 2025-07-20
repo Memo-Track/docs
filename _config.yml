@@ -9,5 +9,4 @@ just_the_docs:
     usermanual:
       output: true
       permalink: /usermanual/:path/
-      sort_order: automatic  
-      toc: true   
+      sort_order: automatic
