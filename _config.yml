@@ -1,7 +1,7 @@
 title: MemoTrack - docs
 theme: just-the-docs
 baseurl: ""
-
+repository: https://github.com/Memo-Track/docs
 just_the_docs:
   permalink: pretty
   heading_levels: 2..4
