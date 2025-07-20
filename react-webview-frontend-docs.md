@@ -1,3 +1,8 @@
+---
+title: React App Docs
+layout: default
+nav_order: 4
+---
 The MemoTrack application's frontend is a **React single-page application (SPA)** designed as a Software-as-a-Service (SaaS) solution for hospitals [Documentation - React App too]. The React app is built using **Create React App**.
 
 ### Getting Started and Development

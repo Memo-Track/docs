@@ -1,3 +1,8 @@
+---
+title: Flutter App Docs
+layout: default
+nav_order: 3
+---
 The MemoTrack Flutter application is designed as a **comprehensive hospital management application**, aimed at efficiently managing and tracking memos within a hospital setting.
 
 ### App Specification and Requirements

@@ -1,9 +1,13 @@
+---
+title: Backend Docs
+layout: default
+nav_order: 2
+---
+
 The `backend` directory houses the core Django application for MemoTrack-SAAS, designed for various hospitals. It includes several Django apps, configuration files, and static content.
 
 Here's a breakdown of each file and its purpose:
 
-*   **`backend.zip`**: This is a binary file, likely a compressed archive of the backend code.
-*   **`data.json`**: This is a binary file, suggesting it contains data used by the backend, possibly for initial setup or specific functionalities.
 *   **`manage.py`**:
     *   This is Django's command-line utility for administrative tasks.
     *   It sets the default port for the runserver command to **`30000`**.

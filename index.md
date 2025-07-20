@@ -1,3 +1,8 @@
+---
+title:  Index
+layout: default
+nav_order: 1
+---
 ## Introduction
 
 Welcome to the comprehensive documentation for the **MemoTrack SAAS project**, a cutting-edge hospital management application. This system has been meticulously designed to **streamline maintenance and communication processes within diverse hospital environments**. It offers a robust and modern solution by combining a powerful backend and a user-friendly mobile application.

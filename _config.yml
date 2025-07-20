@@ -1,2 +1,12 @@
 title: MemoTrack - docs
-theme: minima
+theme: just-the-docs
+baseurl: ""
+
+just_the_docs:
+  heading_levels: 2..4
+  collections:
+    usermanual:
+      output: true
+      permalink: /usermanual/:path/
+      sort_order: automatic  # Optional: or manual
+      toc: true   
